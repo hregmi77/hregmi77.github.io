@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hem Regmi · Controls & Test Engineer</title>
+<meta name="description" content="Hem Regmi: controls and test engineer (Stanadyne, Tesla). PLC automation, test automation, data acquisition, and machine-learning-driven data analysis.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231f4e79'/><text x='50' y='66' font-size='48' text-anchor='middle' fill='white' font-family='Arial' font-weight='700'>HR</text></svg>">
+<style>
+  :root{
+    --bg:#ffffff; --bg-alt:#f5f7fa; --ink:#1b2430; --muted:#5b6675; --line:#e3e8ef;
+    --accent:#1f4e79; --accent-soft:#e8f0f8; --ok:#2a9d8f; --warn:#c77d12;
+    --radius:14px; --max:1080px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0f141a; --bg-alt:#151c24; --ink:#e6ebf1; --muted:#9aa6b4; --line:#26303b;
+           --accent:#7fb3e6; --accent-soft:#1a2836; }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       background:var(--bg);color:var(--ink)}
+  a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+  nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);
+      backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+  nav .brand{font-weight:700;color:var(--ink)}
+  nav ul{list-style:none;display:flex;gap:22px;margin:0;padding:0}
+  nav ul a{color:var(--muted);font-size:15px} nav ul a:hover{color:var(--ink);text-decoration:none}
+  @media (max-width:700px){ nav ul{display:none} }
+
+  header.hero{padding:80px 0 56px}
+  .hero h1{font-size:clamp(34px,5vw,52px);line-height:1.1;margin:0 0 12px}
+  .hero .role{font-size:clamp(18px,2.4vw,22px);color:var(--accent);font-weight:600;margin:0 0 18px}
+  .hero p.lead{font-size:18px;color:var(--muted);max-width:720px;margin:0 0 28px}
+  .btns{display:flex;flex-wrap:wrap;gap:12px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;
+       border:1px solid var(--line);color:var(--ink);font-weight:600;font-size:15px}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn:hover{text-decoration:none;transform:translateY(-1px)}
+  .btn svg{width:18px;height:18px;fill:currentColor}
+
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
+  .stat{background:var(--bg-alt);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+  .stat b{display:block;font-size:28px;color:var(--accent)}
+  .stat span{color:var(--muted);font-size:14px}
+  @media (max-width:700px){ .stats{grid-template-columns:repeat(2,1fr)} }
+
+  section{padding:64px 0;border-top:1px solid var(--line)}
+  section.alt{background:var(--bg-alt)}
+  h2{font-size:28px;margin:0 0 8px}
+  .sub{color:var(--muted);margin:0 0 32px}
+
+  .projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:20px}
+  .card{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+        display:flex;flex-direction:column}
+  .card img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top;border-bottom:1px solid var(--line)}
+  .card .ph{aspect-ratio:16/9;display:grid;place-items:center;background:var(--accent-soft);
+            border-bottom:1px solid var(--line);color:var(--accent)}
+  .card .ph svg{width:56px;height:56px;fill:none;stroke:currentColor;stroke-width:1.6}
+  .card .body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
+  .card h3{margin:0;font-size:18px}
+  .card p{margin:0;color:var(--muted);font-size:15px}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+  .tag{font-size:12.5px;padding:3px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+  .status{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+  .status.live{color:var(--ok)} .status.soon{color:var(--warn)}
+  .card .links{display:flex;gap:16px;font-size:14.5px;font-weight:600}
+
+  .timeline{position:relative;margin:0;padding:0;list-style:none}
+  .timeline > li{position:relative;padding:0 0 28px 28px;border-left:2px solid var(--line)}
+  .timeline > li:last-child{padding-bottom:0}
+  .timeline > li::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;
+       background:var(--bg);border:2px solid var(--accent)}
+  .timeline .head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px}
+  .timeline h3{margin:0;font-size:17px}
+  .timeline .when{color:var(--muted);font-size:14px}
+  .timeline .org{color:var(--accent);font-weight:600;font-size:15px}
+  .timeline ul{margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:15px;list-style:disc}
+  .timeline ul li{margin-bottom:4px}
+
+  .skills{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+  .skill{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+  .skill h3{margin:0 0 10px;font-size:16px}
+  .skill .tags{margin:0}
+
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  @media (max-width:800px){ .two{grid-template-columns:1fr} }
+  .list{margin:0;padding-left:18px;color:var(--muted)} .list li{margin-bottom:8px}
+  .list b{color:var(--ink)}
+
+  footer{padding:40px 0 56px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+  footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">Hem Regmi</a>
+    <ul>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <h1>Hem Regmi</h1>
+    <p class="role">Controls &amp; Test Engineer · Automation · Data Acquisition · Applied ML</p>
+    <p class="lead">
+      I build automation and test systems for automotive manufacturing, from commissioning
+      Model&nbsp;3 assembly lines at Tesla to automating test and production equipment at Stanadyne.
+      My work connects hardware and data: PLCs and robots on one side, and Python tools that turn
+      machine data into root-cause fixes on the other.
+    </p>
+    <div class="btns">
+      <a class="btn primary" href="assets/Hem_Regmi_Resume.pdf" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 2h14v2H5v-2z"/></svg>Resume (PDF)</a>
+      <a class="btn" href="https://github.com/hregmi77" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 .5A11.5 11.5 0 0 0 8.4 22.9c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0C17.3 4.3 18.3 4.6 18.3 4.6c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
+      <a class="btn" href="https://linkedin.com/in/hregmi" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.6c0-1.3 0-3-1.9-3s-2.2 1.5-2.2 2.9V21H9z"/></svg>LinkedIn</a>
+      <a class="btn" href="mailto:its.hemkantaregmi@gmail.com">
+        <svg viewBox="0 0 24 24"><path d="M3 5h18v14H3V5zm9 7.5L5 7.2V17h14V7.2l-7 5.3zM6.2 7l5.8 4.4L17.8 7H6.2z"/></svg>Email</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b>4+ yrs</b><span>automotive controls &amp; test</span></div>
+      <div class="stat"><b>50%</b><span>downtime cut with ML fault ranking at Tesla</span></div>
+      <div class="stat"><b>1 + 1</b><span>US patent granted + application</span></div>
+      <div class="stat"><b>Ph.D.</b><span>Computer Science, sensing &amp; ML</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="projects" class="alt">
+  <div class="wrap">
+    <h2>Projects</h2>
+    <p class="sub">Each project is its own repository, with a demo, diagrams, and instructions to run it yourself.</p>
+    <div class="projects">
+
+      <article class="card">
+        <img src="assets/fault-prediction.png" alt="Fleet health dashboard ranking machines by fault risk" loading="lazy">
+        <div class="body">
+          <span class="status live">● Live</span>
+          <h3>Machine Fault Prediction from Vibration Data</h3>
+          <p>Envelope analysis and feature engineering on bearing vibration data. A random forest
+             finds which part is failing and ranks machines for maintenance. A public recreation of my Tesla downtime project.</p>
+          <div class="links">
+            <a href="https://github.com/hregmi77/machine-fault-prediction" target="_blank" rel="noopener">Code →</a>
+          </div>
+          <div class="tags"><span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">Signal processing</span><span class="tag">Streamlit</span><span class="tag">Plotly</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="ph"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="10" rx="2"/><path d="M7 7V5M12 7V5M17 7V5M7 17v2M12 17v2M17 17v2M7 12h10"/></svg></div>
+        <div class="body">
+          <span class="status soon">● Coming soon</span>
+          <h3>CAN Bus Logger &amp; Dashboard</h3>
+          <p>Log vehicle CAN traffic from OBD-II, decode it with DBC files, and show live signals and trip analytics.</p>
+          <div class="tags"><span class="tag">python-can</span><span class="tag">cantools</span><span class="tag">CAN / DBC</span><span class="tag">Dash</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="ph"><svg viewBox="0 0 24 24"><path d="M2 15h20M4 15v3M20 15v3"/><rect x="6" y="10" width="4" height="5"/><rect x="13" y="10" width="4" height="5"/><circle cx="7" cy="18" r="1.5"/><circle cx="17" cy="18" r="1.5"/><path d="M12 4v4M10 6h4"/></svg></div>
+        <div class="body">
+          <span class="status soon">● Coming soon</span>
+          <h3>PLC Conveyor with a Simulated Machine &amp; Ignition HMI</h3>
+          <p>Ladder logic in OpenPLC controls a simulated sorting conveyor over Modbus, with jam detection, an E-stop, and an Ignition Perspective HMI.</p>
+          <div class="tags"><span class="tag">Ladder logic</span><span class="tag">OpenPLC</span><span class="tag">Modbus</span><span class="tag">Ignition</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="ph"><svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16"/><path d="M7 15l3-4 3 2 4-6"/><path d="M15 7h2v2"/></svg></div>
+        <div class="body">
+          <span class="status soon">● Coming soon</span>
+          <h3>Test Bench Data Analysis Tool</h3>
+          <p>End-of-line test results in SQL, with pass/fail limits, Cpk, control charts, and one-click test reports.</p>
+          <div class="tags"><span class="tag">SQL</span><span class="tag">pandas</span><span class="tag">SPC / Cpk</span><span class="tag">Reporting</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="ph"><svg viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="1"/><path d="M9 3v4M12 3v4M15 3v4M9 17v4M12 17v4M15 17v4M3 9h4M3 12h4M3 15h4M17 9h4M17 12h4M17 15h4"/></svg></div>
+        <div class="body">
+          <span class="status soon">● Coming soon</span>
+          <h3>Hardware-in-the-Loop Test Rig</h3>
+          <p>A microcontroller under test, driven by an automated pytest harness over serial, with CI on every commit.</p>
+          <div class="tags"><span class="tag">ESP32 / Arduino</span><span class="tag">pytest</span><span class="tag">HIL</span><span class="tag">GitHub Actions</span></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <h2>Experience</h2>
+    <p class="sub">Controls engineering in automotive manufacturing, plus five years of research in sensing and machine learning.</p>
+    <ol class="timeline">
+      <li>
+        <div class="head"><h3>Controls Engineer</h3><span class="when">Jun 2025 – Present</span></div>
+        <div class="org">Stanadyne LLC</div>
+        <ul>
+          <li>Develop Python, LabVIEW, Ignition, and JavaScript tools to automate test and production equipment.</li>
+          <li>Integrate data acquisition with low-level embedded hardware to capture reliable test and machine data.</li>
+          <li>Query and analyze test data in relational databases to validate results and spot trends.</li>
+        </ul>
+      </li>
+      <li>
+        <div class="head"><h3>Graduate Research Assistant</h3><span class="when">Aug 2020 – May 2025</span></div>
+        <div class="org">University of South Carolina</div>
+        <ul>
+          <li>Built and field-tested a dashboard-mounted mmWave radar system for 3D vehicle detection in fog and low light.</li>
+          <li>Wrote Python pipelines to acquire, clean, label, and validate large sensor datasets; trained classical ML and deep learning models.</li>
+        </ul>
+      </li>
+      <li>
+        <div class="head"><h3>Controls Engineer</h3><span class="when">Feb 2018 – Dec 2019</span></div>
+        <div class="org">Tesla, Inc.</div>
+        <ul>
+          <li>Managed Model 3 General Assembly automation projects (conveyors, robots, motors) through commissioning.</li>
+          <li>Programmed PLCs and robots, and debugged faults during commissioning and production.</li>
+          <li>Built an Ignition project with Python web API scripting for production data monitoring.</li>
+          <li>Led vibration-sensor data mining and ML to rank machine faults, cutting downtime by over 50%.</li>
+        </ul>
+      </li>
+      <li>
+        <div class="head"><h3>Controls Engineer</h3><span class="when">Nov 2016 – Feb 2018</span></div>
+        <div class="org">Wauseon Machine &amp; Manufacturing, Inc.</div>
+        <ul>
+          <li>Created electrical, safety, and pneumatic schematics in AutoCAD Electrical; programmed Allen-Bradley, Omron, and Mitsubishi PLCs; integrated FANUC robots.</li>
+        </ul>
+      </li>
+      <li>
+        <div class="head"><h3>Graduate Assistant</h3><span class="when">Jan 2015 – Aug 2016</span></div>
+        <div class="org">The University of Toledo</div>
+        <ul>
+          <li>Developed a C# vision system for real-time syringe classification and volume measurement (Best Thesis Award).</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section id="skills" class="alt">
+  <div class="wrap">
+    <h2>Skills</h2>
+    <p class="sub">Tools I use day to day.</p>
+    <div class="skills">
+      <div class="skill"><h3>Programming</h3><div class="tags">
+        <span class="tag">Python</span><span class="tag">C++</span><span class="tag">C#</span><span class="tag">C</span><span class="tag">LabVIEW</span><span class="tag">JavaScript</span><span class="tag">SQL</span><span class="tag">MATLAB</span><span class="tag">Git</span></div></div>
+      <div class="skill"><h3>Controls &amp; Automation</h3><div class="tags">
+        <span class="tag">Allen-Bradley Studio 5000</span><span class="tag">Siemens TIA Portal</span><span class="tag">Omron</span><span class="tag">Ignition SCADA</span><span class="tag">FANUC robots</span><span class="tag">AutoCAD Electrical</span></div></div>
+      <div class="skill"><h3>Test &amp; Embedded</h3><div class="tags">
+        <span class="tag">Test automation</span><span class="tag">Data acquisition</span><span class="tag">Embedded integration</span><span class="tag">Sensor &amp; I/O interfacing</span><span class="tag">Electrical schematics</span></div></div>
+      <div class="skill"><h3>Data &amp; ML</h3><div class="tags">
+        <span class="tag">pandas</span><span class="tag">NumPy</span><span class="tag">SciPy</span><span class="tag">scikit-learn</span><span class="tag">PyTorch</span><span class="tag">TensorFlow</span><span class="tag">OpenCV</span><span class="tag">Plotly</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="research">
+  <div class="wrap">
+    <h2>Education &amp; Research</h2>
+    <p class="sub">18 peer-reviewed publications on wireless sensing and deep learning.</p>
+    <div class="two">
+      <div>
+        <h3>Education</h3>
+        <ul class="list">
+          <li><b>Ph.D., Computer Science</b>, University of South Carolina, 2025</li>
+          <li><b>M.Sc., Electrical Engineering</b>, The University of Toledo, 2016 (Best Thesis Award)</li>
+          <li><b>B.E., Electronics &amp; Communication Engineering</b>, Tribhuvan University, 2012</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Patents &amp; Selected Papers</h3>
+        <ul class="list">
+          <li><b>US Patent 12,562,061</b> (2026): All Weather Traffic Monitoring with Roadside Infrastructure</li>
+          <li><b>MiHazeFree3D</b>: 3D bounding boxes for vehicles and pedestrians in fog and low light. <i>ACM Trans. on Internet of Things</i>, 2026</li>
+          <li><b>SquiggleMilli</b>: approximating SAR imaging on mobile mmWave devices. <i>ACM IMWUT</i>, 2021</li>
+          <li><b>Syringe classification</b> with image processing and neural networks. <i>J. Pharmaceutical Innovation</i>, 2019</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <span>© <span id="yr">2026</span> Hem Regmi</span>
+    <span><a href="mailto:its.hemkantaregmi@gmail.com">its.hemkantaregmi@gmail.com</a> ·
+      <a href="https://github.com/hregmi77">GitHub</a> ·
+      <a href="https://linkedin.com/in/hregmi">LinkedIn</a></span>
+  </div>
+</footer>
+
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>
