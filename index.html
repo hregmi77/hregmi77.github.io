@@ -162,12 +162,17 @@
       </article>
 
       <article class="card">
-        <div class="ph"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="10" rx="2"/><path d="M7 7V5M12 7V5M17 7V5M7 17v2M12 17v2M17 17v2M7 12h10"/></svg></div>
+        <img src="assets/tesla-can.png" alt="CAN diagnostics event timeline for a simulated Tesla Model 3 drive" loading="lazy">
         <div class="body">
-          <span class="status soon">● Coming soon</span>
-          <h3>CAN Bus Logger &amp; Dashboard</h3>
-          <p>Log vehicle CAN traffic from OBD-II, decode it with DBC files, and show live signals and trip analytics.</p>
-          <div class="tags"><span class="tag">python-can</span><span class="tag">cantools</span><span class="tag">CAN / DBC</span><span class="tag">Dash</span></div>
+          <span class="status live">● Live</span>
+          <h3>Tesla Model 3 CAN Analyzer</h3>
+          <p>Decodes CAN logs with the real Model 3 DBC, monitors bus timing and load, and detects timeouts,
+             checksum errors, lost frames, sensor plausibility faults, and over-temperature. 6/6 injected faults caught.</p>
+          <div class="links">
+            <a href="https://hregmi77-tesla-can.streamlit.app" target="_blank" rel="noopener">▶ Live demo</a>
+            <a href="https://github.com/hregmi77/tesla-can-analyzer" target="_blank" rel="noopener">Code →</a>
+          </div>
+          <div class="tags"><span class="tag">CAN / DBC</span><span class="tag">python-can</span><span class="tag">cantools</span><span class="tag">Fault injection</span><span class="tag">Streamlit</span></div>
         </div>
       </article>
 
